@@ -33,7 +33,6 @@ export class AppComponent {
 uploadFile(data: any, type: string) {
   var byteArray = new Uint8Array(data);
   var file = new File([data], "doc1.docx", {type: type});
-  console.log(file);
   readDocumentFromHttp(file);
 }
 
