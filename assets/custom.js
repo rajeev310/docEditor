@@ -25,7 +25,7 @@ function readDocument(input) {
         fileReader.onload = function (e) {
       
          var streamType = TXTextControl.streamType.PlainText;
-      
+         console.log(fileinput.value, 'file value read');
          // set the StreamType based on the lower case extension
          switch (fileinput.value.split('.').pop().toLowerCase()) {
           case 'doc':
@@ -49,10 +49,52 @@ function readDocument(input) {
          }
       
          // load the document beginning at the Base64 data (split at comma)
+         console.log(e.target.result, 'in read');
          TXTextControl.loadDocument(streamType, e.target.result.split(',')[1]);
         };
       
         // read the file and convert it to Base64
+        console.log(input.files[0], 'input data');
         fileReader.readAsDataURL(input.files[0]);
+    }    
+}
+
+function readDocumentFromHttp(blob) {
+    if (blob) {
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+        
+         var streamType = TXTextControl.streamType.PlainText;
+         console.log(fileinput.value, 'file value http');
+         // set the StreamType based on the lower case extension
+         switch (fileinput.value.split('.').pop().toLowerCase()) {
+          case 'doc':
+           streamType = TXTextControl.streamType.MSWord;
+           break;
+          case 'docx':
+           streamType = TXTextControl.streamType.WordprocessingML;
+           break;
+          case 'rtf':
+           streamType = TXTextControl.streamType.RichTextFormat;
+           break;
+          case 'htm':
+           streamType = TXTextControl.streamType.HTMLFormat;
+           break;
+          case 'tx':
+           streamType = TXTextControl.streamType.InternalUnicodeFormat;
+           break;
+          case 'pdf':
+           streamType = TXTextControl.streamType.AdobePDF;
+           break;
+         }
+      
+         // load the document beginning at the Base64 data (split at comma)
+         console.log(e.target.result, 'in http');
+         TXTextControl.loadDocument(streamType, e.target.result.split(',')[1]);
+        };
+      
+        // read the file and convert it to Base64  
+        
+        fileReader.readAsDataURL(blob);
     }    
 }
