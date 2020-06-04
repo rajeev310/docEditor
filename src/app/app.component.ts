@@ -18,7 +18,7 @@ export class AppComponent {
   constructor(private http: HttpClient){}
 
   openFileUsingHttp() {
-    this.http.get(`http://localhost:4200/assets/docs/doc1.docx`,{
+    this.http.get(`https://rajeev310.github.io/docEditor/assets/docs/doc1.docx`,{
       responseType: 'arraybuffer', headers: this.headers} 
      ).subscribe(
        (response) => {
