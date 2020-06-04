@@ -1,6 +1,7 @@
 <div class="fileButtons">
   <input (change)="onChangeLoad($event)" type="file" id="fileinput" />
   <input (click)="onClickSave()" type="button" value="Save as Docx" />
+  <input (click)="openFileUsingHttp()" type="button" value="Open File Using Http" />
 </div>
 <tx-document-editor
   width="{{editorWidth}}"
